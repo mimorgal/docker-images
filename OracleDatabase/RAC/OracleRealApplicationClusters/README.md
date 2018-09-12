@@ -107,7 +107,7 @@ Download following patch from OTN and stage it on your machine.
    * Patch# p27383741_122010_Linux-x86-64.zip
 You can download this patch from [Oracle Technology Network](http://www.oracle.com/technetwork/database/database-technologies/clusterware/downloads/docker-4418413.html). Stage it under `dockerfiles/<version>` folder.
 
-### Building Oracle RAC Database Docker Install Images
+### Section 2 : Building Oracle RAC Database Docker Install Images
 **IMPORTANT:** This section assumes that you have gone through the all the pre-requisites in Section 1 and executed all the steps based on your environment. Do not uncompress the binaries and patches.
 
 **Note:** If you are behind a proxy, you need to set the http_proxy or https_proxy environment variable based on your environment before building the image.
@@ -125,7 +125,7 @@ To assist in building the images, you can use the [buildDockerImage.sh](dockerfi
 
 **IMPORTANT:** The resulting images will contain the Oracle Grid Infrastructure Binaries and Oracle RAC Database binaries.
 
-### Section 3: Creating the Docker GI and RAC Container
+### Section 3 : Creating the Docker GI and RAC Container
 * All containers will share a host file for name resolution.  The shared hostfile must be available to all container. Create the shared host file (if it doesn't exist) at /opt/containers/rac_host_file
         Example:
 
@@ -248,7 +248,7 @@ For the details of Parameters, please refer to Section 6.
 check /tmp/orod.log. Go to grid logs i.e. $GRID_BASE/diag/crs and check the failure logs. If it has failed during creation then check DB logs.
 
 
-### Section 4: Adding a RAC Node using a Docker container
+### Section 4 : Adding a RAC Node using a Docker container
 Check DB and cluster is up and running on existing node of the cluster. Otherwise, Node addition will fail or error out.
 
 #### 4.1 Deploying with Block Devices:
@@ -347,7 +347,7 @@ If you are using physical block devices for shared storage, skip to "4.3 Assigni
 
         Go to grid logs i.e. $GRID_BASE/diag/crs and check the failure logs. If it has failed during creation then check DB logs.
 
-### Section 5: Connecting to RAC Database
+### Section 5 : Connecting to RAC Database
 **IMPORTANT:** This section assume that you have gone through the all the above sections and RAC DB is up and running inside the containers.
 
 * If you are using connection manager and exposed the port 1521 on docker host. You can connect from a client outside the host using following command:
@@ -358,7 +358,7 @@ If you are using physical block devices for shared storage, skip to "4.3 Assigni
 
                 sqlplus  system/<password>@//<scan_name>:1521/<ORACLE_SID>
 
-### Section 6: ENV Variables for RAC 1st Node container
+### Section 6 : ENV Variables for RAC 1st Node container
 * This section provides the details about env variables which can be used for the 1st node of the cluster.
 
         Parameters:
@@ -385,7 +385,7 @@ If you are using physical block devices for shared storage, skip to "4.3 Assigni
         ASM_DISCOVERY_DIR=####ASM disk location insdie the container. By default it is /dev######
         OS_PASSWORD=You need to pass this for ssh setup between grid and oracle user. OS_PASSWORD will rest the password of grid and Oracle user based on your env. You need common password on all the containers during Node Addition. Once the Node Addition is done you can change the passwords based on your environment policies. 
 
-### Section 7: ENV Variables for RAC 2nd Node Container (ADDNode)
+### Section 7 : ENV Variables for RAC 2nd Node Container (ADDNode)
 * This section provides the details about env variables which can be used for an additional node added to the cluster.
 
         Parameters:
